@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
         Specification<Login> specPassword = LoginSpecification.equalLoginId(login.getPassword());
         Specification<Login> specUseYn = LoginSpecification.equalUseYn('Y');
 
-        Login returned = loginRepository.findOne(Specification.where(specLoginId).and(specPassword).and(specUseYn)).orElse(new Login());
+        Login returned = loginRepository.findOne(Specification.where(specLoginId).and(specPassword).and(specUseYn)).orElse(null);
         return returned;
     }
 }

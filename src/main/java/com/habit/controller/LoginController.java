@@ -20,7 +20,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model){
-        model.addAttribute("url","/assets/test.js");
+        model.addAttribute("url","/assets/login.js");
         return "index";
     }
 

@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const config = {
     entry: {
         index: path.resolve(__dirname, 'src/index.js'),
-        test:'./assets/js/test.jsx'
+        login:'./assets/js/login/login.jsx'
     },
     output: {
         path: path.resolve(__dirname, 'src/main/frontend/assets/out'),
