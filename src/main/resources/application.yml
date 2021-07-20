@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    password: zxc06733
+    url: jdbc:log4jdbc:mariadb://127.0.0.1/habit
+    username: habit
+  jpa:
+    hibernate:
+      ddl-auto: update
