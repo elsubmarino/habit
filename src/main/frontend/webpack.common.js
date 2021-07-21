@@ -6,7 +6,11 @@ const isProd = process.env.NODE_ENV === 'production'
 const config = {
     entry: {
         index: path.resolve(__dirname, 'src/index.js'),
-        login:'./assets/js/login/login.jsx'
+        login:'./assets/js/login/login.jsx',
+        habit:'./assets/js/habit/habit.jsx',
+    },
+    resolve: {
+        extensions: ['.jsx', '.js', '.json']
     },
     output: {
         path: path.resolve(__dirname, 'src/main/frontend/assets/out'),
