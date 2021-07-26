@@ -18,14 +18,14 @@ public class LoginController {
     @Resource(name="loginService")
     private LoginService loginService;
 
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("url","/assets/login.js");
-        return "index";
-    }
+//    @GetMapping("/login")
+//    public String login(Model model){
+//        model.addAttribute("url","/assets/login.js");
+//        return "index";
+//    }
 
-    @PostMapping("/login")
-    public ResponseEntity<Login> login(Login login, HttpServletRequest request){
+    @PostMapping("/loginProgress")
+    public ResponseEntity<Login> loginProgress(Login login, HttpServletRequest request){
         Login returned = loginService.getLoginInformation(login);
         if(returned != null) {
             returned.setPassword(null);
@@ -33,4 +33,6 @@ public class LoginController {
         }
         return new ResponseEntity<Login>(returned, HttpStatus.OK);
     }
+
+
 }

@@ -5,15 +5,15 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const config = {
     entry: {
-        index: path.resolve(__dirname, 'src/index.js'),
-        login:'./assets/js/login/login.jsx',
-        habit:'./assets/js/habit/habit.jsx',
+        index: path.resolve(__dirname, 'assets/js/index.tsx'),
+        login:'./assets/js/login/login.tsx',
+        habit:'./assets/js/habit/habit.tsx',
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.json']
+        extensions: ['.jsx', '.js', '.json', '.ts','.tsx','.css','.scss']
     },
     output: {
-        path: path.resolve(__dirname, 'src/main/frontend/assets/out'),
+        path: path.resolve(__dirname, 'assets/out'),
         publicPath: '/assets',
         //filename: '[name]-[hash].js',
         filename: '[name].js',
@@ -25,18 +25,33 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: [path.resolve(__dirname, 'node_modules')],
-                use: {
-                    loader: "babel-loader",
-                    options:{
-                        presets:[
-                            "@babel/preset-env",
-                            "@babel/preset-react"
-                        ]
-                    }
-                }
+                use: [
+                    'babel-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                        },
+                    },
+                ],
+                // use: {
+                //     loader: "babel-loader",
+                //     options:{
+                //         presets:[
+                //             "@babel/preset-env",
+                //             "@babel/preset-react"
+                //         ]
+                //     }
+                // }
             },
+            // {
+            //     test: /\.(ts|tsx)$/,
+            //     loader: 'ts-loader',
+            //     // include: [path.resolve(__dirname, 'yourAppPath')],
+            //     exclude: [path.resolve(__dirname, 'node_modules')],
+            // },
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
