@@ -14,9 +14,9 @@ public class HabitController {
 
 
 
-    @PostMapping("/habit/add/{contents}")
-    public ResponseEntity<HttpStatus> add(@PathVariable("contents") String contents){
-
-    }
+//    @PostMapping("/habit/add/{contents}")
+//    public ResponseEntity<HttpStatus> add(@PathVariable("contents") String contents){
+//
+//    }
 
 }

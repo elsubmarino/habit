@@ -34,5 +34,18 @@ public class LoginController {
         return new ResponseEntity<Login>(returned, HttpStatus.OK);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<Login> register(Login login, HttpServletRequest request){
+        login.setUseYn('Y');
+        Login returned = loginService.register(login);
+        return new ResponseEntity<Login>(returned, HttpStatus.OK);
+    }
+
+//    @GetMapping("/register")
+//    public String register(Model model){
+//        model.addAttribute("url","/assets/register.js");
+//        return "index";
+//    }
+//
 
 }

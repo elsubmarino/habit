@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import axios from "axios";
+import * as ReactDOM from "react-dom";
 
 const Regist: React.FC = () =>{
     const [id,setId] = useState('');
@@ -12,7 +13,7 @@ const Regist: React.FC = () =>{
             url:'',
 
         }).then().catch();
-    }1
+    }
 
     return(
         <>
@@ -44,3 +45,9 @@ const Regist: React.FC = () =>{
 }
 
 export default Regist;
+
+const e = document.querySelector('div#container');
+if (e != null) {
+    ReactDOM.render(<Regist/>, e);
+}
+
