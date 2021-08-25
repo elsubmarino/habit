@@ -15,3 +15,4 @@ public class DatabaseConfig {
         return new JPAQueryFactory(em);
     }
 }
+//test
