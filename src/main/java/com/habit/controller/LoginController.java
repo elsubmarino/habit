@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -25,13 +26,16 @@ public class LoginController {
 //    }
 
     @PostMapping("/loginProgress")
-    public ResponseEntity<Login> loginProgress(Login login, HttpServletRequest request){
+    public ResponseEntity<Login> loginProgress(@RequestBody Login login, HttpServletRequest request){
+        System.out.println("11zzzAfffdfsadf");
+        login.setUseYn('Y');
         Login returned = loginService.getLoginInformation(login);
         if(returned != null) {
             returned.setPassword(null);
             request.setAttribute("login", returned);
+            return new ResponseEntity<Login>(returned, HttpStatus.OK);
         }
-        return new ResponseEntity<Login>(returned, HttpStatus.OK);
+        return new ResponseEntity<Login>(returned, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/register")

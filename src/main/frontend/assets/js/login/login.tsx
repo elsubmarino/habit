@@ -2,21 +2,29 @@ import * as React from 'react'
 import * as ReactDOM from "react-dom";
 import axios from "axios";
 import {useState} from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
 
 export default function Login() {
-    const [id, setId] = useState('');
+    const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
 
     const submit = () => {
-
         axios({
             method: 'POST',
             url: '/loginProgress',
-            data: {id: id, password: password}
-        }).then(() => {
-            alert('asdfasdf');
+            data: {loginId: loginId, password: password}
+        }).then(response => {
+            if(response.status === 200)
+                location.assign("/main");
+            else
+                alert("아이디 혹은 비밀번호가 올바르지 않습니다.");
         }).catch((err) => {
-            alert(err);
+            alert("잘못된 요청입니다.");
         });
     }
 
@@ -24,7 +32,7 @@ export default function Login() {
     return (
         <React.Fragment>
             아이디: <input type={"text"} name={'id'}
-                        onChange={(e) => setId(e.target.value)}/><br/>
+                        onChange={(e) => setLoginId(e.target.value)}/><br/>
             암호: <input type={"password"} name={'password'}
                        onChange={(e) => setPassword(e.target.value)}/>
             <br/>

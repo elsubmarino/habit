@@ -4,4 +4,5 @@ import com.habit.domain.Login;
 
 public interface LoginService {
     Login getLoginInformation(Login login);
+    Login register(Login login);
 }

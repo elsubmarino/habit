@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Login from './login/login';
+import Main from'./habit/main';
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Switch>
               <Route path="/login" component={Login}/>
               <Route path="/regist" component={Regist}/>
+              <Route path={"/main"} component={Main}/>
           </Switch>
       </div>
 );

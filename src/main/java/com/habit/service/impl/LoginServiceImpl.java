@@ -23,12 +23,17 @@ public class LoginServiceImpl implements LoginService {
         //loginRepositorySupport.findByLoginIdANdPassword(login);
 
         Specification<Login> specLoginId = LoginSpecification.equalLoginId(login.getLoginId());
-        Specification<Login> specPassword = LoginSpecification.equalLoginId(login.getPassword());
+        Specification<Login> specPassword = LoginSpecification.equalPassword(login.getPassword());
         Specification<Login> specUseYn = LoginSpecification.equalUseYn('Y');
 
         Login returned = loginRepository.findOne(Specification.where(specLoginId).and(specPassword).and(specUseYn)).orElse(null);
 
 
         return returned;
+    }
+
+    @Override
+    public Login register(Login login) {
+        return loginRepository.save(login);
     }
 }

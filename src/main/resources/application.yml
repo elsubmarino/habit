@@ -11,3 +11,5 @@ spring:
     remote:
       restart:
         enabled: true
+    livereload:
+      enabled: true
