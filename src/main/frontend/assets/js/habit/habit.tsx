@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import HabitList from "./habitList";
 import * as PropTypes from "prop-types";
 import {useState} from "react";
+import axios from "axios";
 
 
 const Habit: React.FC = () => {
@@ -14,6 +15,12 @@ const Habit: React.FC = () => {
         let list_ = [...list];
         list_.push(schedule);
         setList(list_);
+    }
+
+    const getList = () => {
+        axios({
+
+        })
     }
 
     return (

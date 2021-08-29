@@ -1,31 +1,73 @@
 import * as React from 'react';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import FolderList from "./folderList";
 import axios from "axios";
 
 const Folder : React.FC = () =>{
-    const [folderList,setFolderList] = useState([]);
+    const [folderList,setFolderList] = useState("");
     const [value,setValue] = useState('');
 
+
     const add = () =>{
-        let list = [...folderList];
+        addToDb(value);
+        /*let list = [...folderList];
         list.push(value);
-        setFolderList(list);
+        setFolderList(list);*/
     }
 
-    const addToDb = () =>{
+    const getList = () =>{
         axios({
-            url:'',
+            url:'/folder/list',
             method:'post'
-        })
+        }).then(response=>{
+            setFolderList(response.data);
+        }).catch(e=>{
+           alert("에러가 발생했습니다.");
+        });
     }
 
-    const remove = (index) =>{
-        let list = [...folderList];
-        setFolderList(
-        list.filter((d,curIndex)=> curIndex !== index )
-        );
+
+
+    const addToDb = (value) =>{
+
+        axios({
+            url:'/folder/create',
+            data:{title:value},
+            method:'post'
+        }).then((response)=>{
+            let list = [...folderList];
+            list.push(response.data);
+            setFolderList(list);
+        }).catch((e)=>{
+            alert("에러가 발생했습니다.");
+        });
     }
+
+    // const remove = (index) =>{
+    //     let list = [...folderList];
+    //     setFolderList(
+    //     list.filter((d,curIndex)=> curIndex !== index )
+    //     );
+    // }
+
+    const remove = (id)=>{
+        axios({
+            url:`/folder/delete/${id}`,
+            data:{title:value},
+            method:'post'
+        }).then((data)=>{
+            let list = [...folderList];
+            setFolderList(
+                list.filter((d)=> d.id !== id )
+            );
+        }).catch((e)=>{
+            alert("에러가 발생했습니다.");
+        });
+    }
+
+    useEffect(()=>{
+        getList();
+    },[]);
 
 
     return(
@@ -36,7 +78,7 @@ const Folder : React.FC = () =>{
             </button>
             <FolderList
                 folderList={folderList}
-                remove={(index)=>remove(index)}
+                remove={(id)=>remove(id)}
             />
         </>
     )

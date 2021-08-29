@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -27,12 +28,12 @@ public class LoginController {
 
     @PostMapping("/loginProgress")
     public ResponseEntity<Login> loginProgress(@RequestBody Login login, HttpServletRequest request){
-        System.out.println("11zzzAfffdfsadf");
         login.setUseYn('Y');
         Login returned = loginService.getLoginInformation(login);
         if(returned != null) {
             returned.setPassword(null);
-            request.setAttribute("login", returned);
+            HttpSession session = request.getSession();
+            session.setAttribute("login",returned);
             return new ResponseEntity<Login>(returned, HttpStatus.OK);
         }
         return new ResponseEntity<Login>(returned, HttpStatus.BAD_REQUEST);

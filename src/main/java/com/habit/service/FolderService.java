@@ -1,5 +1,11 @@
 package com.habit.service;
 
-//public interface FolderService {
-//    void insert
-//}
+import com.habit.domain.Folder;
+
+import java.util.List;
+
+public interface FolderService {
+    Folder create(Folder folder);
+    void delete(Folder folder);
+    List<Folder> list(Folder folder);
+}
