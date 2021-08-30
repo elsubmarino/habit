@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 public class HabitSpecification {
     public static Specification<Habit> equalLoginId(Habit habit){
         return (Specification<Habit>)((root, query, builder)->
-            builder.equal(root.get("loginId"),habit.getLogin())
+            builder.equal(root.get("login"),habit.getLogin())
         );
     }
 }

@@ -4,7 +4,7 @@ import FolderList from "./folderList";
 import axios from "axios";
 
 const Folder : React.FC = () =>{
-    const [folderList,setFolderList] = useState("");
+    const [folderList,setFolderList] = useState([]);
     const [value,setValue] = useState('');
 
 

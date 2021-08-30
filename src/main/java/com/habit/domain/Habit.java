@@ -16,6 +16,12 @@ public class Habit {
 
     private LocalDateTime date;
 
+    @Column(nullable = false)
+    private LocalDateTime registrationDateTime;
+
+    @Column(nullable = false)
+    private LocalDateTime modificationDateTime;
+
     @ManyToOne
     @JoinColumn(name="loginId", referencedColumnName = "id")
     private Login login;

@@ -1,27 +1,68 @@
 import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import MainSubList from "./mainSubList";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import HabitList from "./habitList";
 import Folder from "./folder";
+import axios from "axios";
+import Paging from "./paging";
 
 
 const Main: React.FC = () => {
     const [schedule, setSchedule] = useState('');
-    const [list, setList] = useState({});
+    const [list, setList] = useState([]);
 
     const add = () =>
     {
-        let list_ = [...list];
-        list_.push(schedule);
-        setList(list_);
+        axios({
+            url:'/habit/create',
+            data:{description:schedule},
+            method:'post'
+        }).then((response)=>{
+            let list_ = [...list];
+            list_.push(response.data);
+            setList(list_);
+        }).catch((e)=>{
+            alert("에러가 발생했습니다.");
+        });
+        // let list_ = [...list];
+        // list_.push(schedule);
+        // setList(list_);
     }
 
-    const remove = (currIndex) =>{
-        const list_ = [...list];
-        setList(
-        list_.filter((d,index)=>index!==currIndex));
+    const remove = (id) =>{
+
+        axios({
+            url:`/habit/delete/${id}`,
+            data:{id:id},
+            method:'post'
+        }).then((res)=>{
+            const list_ = [...list];
+            setList(
+                 list_.filter((d)=> d.id !== id )
+            );
+        }).catch((e)=>{
+            alert("에러가 발생했습니다.");
+        });
     }
+
+
+    const getList = () => {
+        axios({
+            url:'/habit/list',
+            method:'post'
+        }).then(res=>{
+            //alert(JSON.stringify(res.data));
+            setList(res.data);
+        }).catch(e=>{
+            alert("에러가 발생했습니다.");
+        })
+    }
+
+    useEffect(()=>{
+        getList();
+    },[]);
+
 
     return (
         <div>
@@ -36,8 +77,13 @@ const Main: React.FC = () => {
                     <input type={'button'} onClick={(e) => add()}/>
                     <div>
                         <MainSubList
-                            list={list}
-                            remove={(index)=>remove(index)}
+                            list={list.content}
+                            remove={(id)=>remove(id)}
+                        />
+                        <Paging
+                           pageable = {list.pageable}
+                           totalElements = {list.totalElements}
+                           totalPages = {list.totalPages}
                         />
                     </div>
                 </div>

@@ -5,7 +5,7 @@ const FolderList : React.FC = (props) =>{
 
     return(
         <>
-            {props.folderList !== ""  ?
+            {props.folderList.length > 0  ?
                 props.folderList.map((d, index) =>
                     <div key={'rs'+index} id={d.id}>
                         <a href=''>{d.title}</a>

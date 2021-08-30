@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import HabitList from "./habitList";
 import * as PropTypes from "prop-types";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 
@@ -17,11 +17,9 @@ const Habit: React.FC = () => {
         setList(list_);
     }
 
-    const getList = () => {
-        axios({
 
-        })
-    }
+
+
 
     return (
         <div>
