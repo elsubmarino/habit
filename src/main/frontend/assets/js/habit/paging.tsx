@@ -10,7 +10,7 @@ const Paging : React.FC = (props) => {
     const rendered = () =>{
         let items = [];
         if(props.pageable !== undefined) {
-            for (let i = props.pageable.pageNumber; i < props.pageable.pageSize; i++) {
+            for (let i = props.pageable.pageNumber; i < props.totalPages; i++) {
                 items.push(<li>{i+1}</li>);
             }
         }
