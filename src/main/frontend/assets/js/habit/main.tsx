@@ -10,7 +10,7 @@ import Paging from "./paging";
 
 const Main: React.FC = () => {
     const [schedule, setSchedule] = useState('');
-    const [list, setList] = useState([]);
+    const [list, setList] = useState('');
 
     const add = () =>
     {
@@ -52,7 +52,6 @@ const Main: React.FC = () => {
             url:'/habit/list',
             method:'post'
         }).then(res=>{
-            //alert(JSON.stringify(res.data));
             setList(res.data);
         }).catch(e=>{
             alert("에러가 발생했습니다.");
@@ -77,14 +76,14 @@ const Main: React.FC = () => {
                     <input type={'button'} onClick={(e) => add()}/>
                     <div>
                         <MainSubList
-                            list={list.content}
+                            list={list.result}
                             remove={(id)=>remove(id)}
                         />
-                        <Paging
-                           pageable = {list.pageable}
-                           totalElements = {list.totalElements}
-                           totalPages = {list.totalPages}
-                        />
+                        {/*<Paging*/}
+                        {/*   pageable = {list.pageable}*/}
+                        {/*   totalElements = {list.totalElements}*/}
+                        {/*   totalPages = {list.totalPages}*/}
+                        {/*/>*/}
                     </div>
                 </div>
             </div>

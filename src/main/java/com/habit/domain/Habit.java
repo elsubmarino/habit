@@ -1,5 +1,6 @@
 package com.habit.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +18,11 @@ public class Habit {
     private LocalDateTime date;
 
     @Column(nullable = false)
+    @JsonFormat
     private LocalDateTime registrationDateTime;
 
     @Column(nullable = false)
+    @JsonFormat
     private LocalDateTime modificationDateTime;
 
     @ManyToOne

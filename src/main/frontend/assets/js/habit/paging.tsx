@@ -20,7 +20,9 @@ const Paging : React.FC = (props) => {
     return(
         <>
             {
-                rendered()
+                props.pageList.map(d=>{
+                   return <li>{d+1}</li>
+                })
             }
         </>
     )

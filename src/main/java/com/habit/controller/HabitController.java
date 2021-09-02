@@ -1,9 +1,14 @@
 package com.habit.controller;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.habit.domain.Folder;
 import com.habit.domain.Habit;
 import com.habit.domain.Login;
 import com.habit.service.HabitService;
+import com.habit.util.PageMaker;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/habit/")
@@ -25,13 +32,21 @@ public class HabitController {
     HabitService habitService;
 
     @PostMapping(value="list")
-    public Page<Habit> list(HttpServletRequest request){
+    public @ResponseBody
+    PageMaker list(HttpServletRequest request) throws JsonProcessingException {
         Login login = (Login)request.getSession().getAttribute("login");
         Habit habit = new Habit();
         habit.setLogin(login);
         Page<Habit> list = habitService.getList(habit);
+        PageMaker pageMaker = new PageMaker(list);
+        Map<String,Object> map =new HashMap<>();
+        map.put("data",pageMaker);
 
-        return list;
+        //ObjectMapper jsonMapper = new ObjectMapper();
+        //jsonMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+        //String jsonString = jsonMapper.writeValueAsString(pageMaker);
+        return pageMaker;
     }
 
     @PostMapping("create")
