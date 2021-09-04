@@ -31,21 +31,14 @@ public class HabitController {
     @Resource(name="habitService")
     HabitService habitService;
 
-    @PostMapping(value="list")
+    @GetMapping(value="list/{number}")
     public @ResponseBody
-    PageMaker list(HttpServletRequest request) throws JsonProcessingException {
+    PageMaker list(HttpServletRequest request, @PathVariable(name = "number",required = false) int number) throws JsonProcessingException {
         Login login = (Login)request.getSession().getAttribute("login");
         Habit habit = new Habit();
         habit.setLogin(login);
-        Page<Habit> list = habitService.getList(habit);
+        Page<Habit> list = habitService.getList(habit,number);
         PageMaker pageMaker = new PageMaker(list);
-        Map<String,Object> map =new HashMap<>();
-        map.put("data",pageMaker);
-
-        //ObjectMapper jsonMapper = new ObjectMapper();
-        //jsonMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-
-        //String jsonString = jsonMapper.writeValueAsString(pageMaker);
         return pageMaker;
     }
 

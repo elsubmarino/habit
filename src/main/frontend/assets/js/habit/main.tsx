@@ -10,7 +10,8 @@ import Paging from "./paging";
 
 const Main: React.FC = () => {
     const [schedule, setSchedule] = useState('');
-    const [list, setList] = useState('');
+    const [list, setList] = useState([]);
+    const [pageList, setPageList] = useState([]);
 
     const add = () =>
     {
@@ -49,10 +50,11 @@ const Main: React.FC = () => {
 
     const getList = () => {
         axios({
-            url:'/habit/list',
+            url:'/habit/list/0',
             method:'post'
         }).then(res=>{
-            setList(res.data);
+            setPageList(res.data.pageList);
+            setList(res.data.result.content);
         }).catch(e=>{
             alert("에러가 발생했습니다.");
         })
@@ -76,14 +78,12 @@ const Main: React.FC = () => {
                     <input type={'button'} onClick={(e) => add()}/>
                     <div>
                         <MainSubList
-                            list={list.result}
+                            list={list}
                             remove={(id)=>remove(id)}
                         />
-                        {/*<Paging*/}
-                        {/*   pageable = {list.pageable}*/}
-                        {/*   totalElements = {list.totalElements}*/}
-                        {/*   totalPages = {list.totalPages}*/}
-                        {/*/>*/}
+                        <Paging
+                           pageList = {pageList}
+                        />
                     </div>
                 </div>
             </div>

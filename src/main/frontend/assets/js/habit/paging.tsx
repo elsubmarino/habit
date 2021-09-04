@@ -7,22 +7,15 @@ import Folder from "./folder";
 import axios from "axios";
 
 const Paging : React.FC = (props) => {
-    const rendered = () =>{
-        let items = [];
-        if(props.pageable !== undefined) {
-            for (let i = props.pageable.pageNumber; i < props.totalPages; i++) {
-                items.push(<li>{i+1}</li>);
-            }
-        }
-        return items;
-    }
 
     return(
         <>
             {
+                props.pageList.length > 0 ?
                 props.pageList.map(d=>{
-                   return <li>{d+1}</li>
+                    return <li><a href={`/habit/list/${d.pageNumber}`}>{d.pageNumber+1}</a></li>
                 })
+                    :null
             }
         </>
     )

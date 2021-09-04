@@ -9,7 +9,7 @@ const MainSubList: React.FC = (props) => {
     return (
         <div>
             {
-                props.list !== undefined && props.list.length > 0 ?
+                props.list.length > 0 ?
                     props.list.map((d, index) =>
                         <>
                             <div key={`rs-${index}`} id={d.id}>{d.description}</div>
