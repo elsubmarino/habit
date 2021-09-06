@@ -13,6 +13,8 @@ const Main: React.FC = () => {
     const [schedule, setSchedule] = useState('');
     const [list, setList] = useState([]);
     const [pageList, setPageList] = useState([]);
+    const [prevPage,setPrevPage] = useState('');
+    const [nextPage,setNextPage] = useState('');
 
     const add = () =>
     {
@@ -49,13 +51,17 @@ const Main: React.FC = () => {
     }
 
 
-    const getList = () => {
+    const getList = (page) => {
+        page=(page==undefined?0:page);
+
         axios({
-            url:'/habit/list/0',
+            url:`/habit/list/${page}`,
             method:'post'
         }).then(res=>{
             setPageList(res.data.pageList);
             setList(res.data.result.content);
+            setPrevPage(res.data.prevPage);
+            setNextPage(res.data.nextPage);
         }).catch(e=>{
             alert("에러가 발생했습니다.");
         })
@@ -84,6 +90,9 @@ const Main: React.FC = () => {
                         />
                         <Paging
                            pageList = {pageList}
+                           nextPage = {nextPage}
+                           prevPage = {prevPage}
+                           getList={(page)=>getList(page)}
                         />
                     </div>
                 </div>

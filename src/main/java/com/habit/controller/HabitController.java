@@ -31,7 +31,7 @@ public class HabitController {
     @Resource(name="habitService")
     HabitService habitService;
 
-    @GetMapping(value="list/{number}")
+    @PostMapping(value="list/{number}")
     public @ResponseBody
     PageMaker list(HttpServletRequest request, @PathVariable(name = "number",required = false) int number) throws JsonProcessingException {
         Login login = (Login)request.getSession().getAttribute("login");
@@ -39,6 +39,7 @@ public class HabitController {
         habit.setLogin(login);
         Page<Habit> list = habitService.getList(habit,number);
         PageMaker pageMaker = new PageMaker(list);
+        System.out.println("112222211");
         return pageMaker;
     }
 

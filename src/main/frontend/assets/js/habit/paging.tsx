@@ -11,10 +11,20 @@ const Paging : React.FC = (props) => {
     return(
         <>
             {
+                props.prevPage!==null?
+                    <a href={'#'} onClick={()=>props.getList(props.prevPage.pageNumber)}>이전</a>
+                    :null
+            }
+            {
                 props.pageList.length > 0 ?
                 props.pageList.map(d=>{
-                    return <li><a href={`/habit/list/${d.pageNumber}`}>{d.pageNumber+1}</a></li>
+                    return <li><a href={'#'} onClick={()=>props.getList(d.pageNumber)}>{d.pageNumber+1}</a></li>
                 })
+                    :null
+            }
+            {
+                props.nextPage!==null?
+                    <a href={'#'} onClick={()=>props.getList(props.nextPage.pageNumber)}>이후</a>
                     :null
             }
         </>

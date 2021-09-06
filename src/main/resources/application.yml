@@ -8,8 +8,8 @@ spring:
     hibernate:
       ddl-auto: update
   devtools:
-    remote:
-      restart:
-        enabled: true
     livereload:
       enabled: true
+      port: 48787
+    restart:
+      enabled: false
