@@ -13,6 +13,7 @@ const App: React.FC = () => {
       <div>
           <Link to="/regist">회원가입</Link>
           <Link to="/login">로그인</Link>
+          <a href={"/auth/google"}>구글 로그인</a>
           <Switch>
               <Route path="/login" component={Login}/>
               <Route path="/regist" component={Regist}/>
