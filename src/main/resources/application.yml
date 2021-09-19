@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: oauth
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     password: zxc06733
@@ -13,3 +15,14 @@ spring:
       port: 48787
     restart:
       enabled: false
+
+sns:
+  google:
+    callback:
+      url: http://localhost:8080/auth/google/callback
+    client:
+      id: 792142333254-9hr0movghp81k68jdgrmu2bpbraerf88.apps.googleusercontent.com
+      secret: 4furtWRSntSGuKosjmdXInjt
+    token:
+      url: https://oauth2.googleapis.com/token
+    url: https://accounts.google.com/o/oauth2/v2/auth

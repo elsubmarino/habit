@@ -16,7 +16,7 @@ public class LoginRepositorySupport {
 
     public Login findByLoginIdANdPassword(Login login) {
         return queryFactory.selectFrom(QLogin.login)
-                .where(QLogin.login.loginId.eq(login.getLoginId()).and(QLogin.login.password.eq(login.getPassword()))
+                .where(QLogin.login.email.eq(login.getEmail()).and(QLogin.login.password.eq(login.getPassword()))
                 )
                 .fetchOne();
     }

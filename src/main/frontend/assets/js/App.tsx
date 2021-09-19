@@ -12,10 +12,10 @@ const App: React.FC = () => {
   return (
       <div>
           <Link to="/regist">회원가입</Link>
-          <Link to="/login">로그인</Link>
-          <a href={"/auth/google"}>구글 로그인</a>
+          <Link to="/login2">로그인</Link>
+          <a href={"/oauth2/authorization/google"}>구글 로그인</a>
           <Switch>
-              <Route path="/login" component={Login}/>
+              <Route path="/login2" component={Login}/>
               <Route path="/regist" component={Regist}/>
               <Route path={"/main"} component={Main}/>
           </Switch>

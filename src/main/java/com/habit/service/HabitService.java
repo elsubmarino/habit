@@ -9,6 +9,7 @@ import java.util.List;
 public interface HabitService {
     Habit create(Habit habit);
     void delete(Habit habit);
+    Habit modify(Habit habit);
     Page<Habit> getList(Habit habit,int number);
 
 }

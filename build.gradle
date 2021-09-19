@@ -45,6 +45,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.5'
     implementation 'org.codehaus.jackson:jackson-core-asl:1.9.13'
     implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 }
 
 test {

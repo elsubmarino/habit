@@ -42,4 +42,9 @@ public class HabitServiceImpl implements HabitService {
     public void delete(Habit habit) {
         habitRepository.delete(habit);
     }
+
+    @Override
+    public Habit modify(Habit habit) {
+        return habitRepository.save(habit);
+    }
 }

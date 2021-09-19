@@ -38,13 +38,26 @@ const Main: React.FC = () => {
 
         axios({
             url:`/habit/delete/${id}`,
-            data:{id:id},
             method:'post'
         }).then((res)=>{
             const list_ = [...list];
             setList(
                  list_.filter((d)=> d.id !== id )
             );
+        }).catch((e)=>{
+            alert("에러가 발생했습니다.f");
+        });
+    }
+
+    const modify = (id)=>{
+        const list_ = [...list];
+        const data = list_.filter((d)=>d.id===id)[0];
+        axios({
+            url:`/habit/modify/${id}`,
+            data:data,
+            method:'post'
+        }).then((res)=>{
+            getList(0);
         }).catch((e)=>{
             alert("에러가 발생했습니다.");
         });
@@ -87,6 +100,8 @@ const Main: React.FC = () => {
                         <MainSubList
                             list={list}
                             remove={(id)=>remove(id)}
+                            modify={(id)=>modify(id)}
+                            setList = {(list)=>setList(list)}
                         />
                         <Paging
                            pageList = {pageList}

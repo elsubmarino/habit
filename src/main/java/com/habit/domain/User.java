@@ -4,27 +4,17 @@ import com.habit.config.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
-public class Login {
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String loginId;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private char useYn;
 
     @Column(nullable = false)
     private String name;
@@ -40,14 +30,14 @@ public class Login {
     private Role role;
 
     @Builder
-    public Login(String name, String email, String picture, Role role){
+    public User(String name, String email, String picture, Role role){
         this.name = name;
         this.email = email;
         this.picture = picture;
         this.role = role;
     }
 
-    public Login update(String name, String picture){
+    public User update(String name, String picture){
         this.name = name;
         this.picture = picture;
 

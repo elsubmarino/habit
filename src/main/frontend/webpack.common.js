@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const config = {
     entry: {
         index: path.resolve(__dirname, 'assets/js/index.tsx'),
-        login:'./assets/js/login/login.tsx',
+        login2:'./assets/js/login/login.tsx',
         habit:'./assets/js/habit/habit.tsx',
         regist:'./assets/js/login/regist.tsx',
     },

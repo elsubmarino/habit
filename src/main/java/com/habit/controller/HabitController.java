@@ -60,6 +60,15 @@ public class HabitController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping("modify/{id}")
+    public ResponseEntity<HttpStatus> modify(@RequestBody final Habit habit, HttpServletRequest request, @PathVariable("id") Long id){
+        HttpSession session = request.getSession();
+        Login login = (Login)session.getAttribute("login");
+        habit.setId(id);
+        habitService.modify(habit);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 //    @PostMapping("/add")
 //    public ResponseEntity<List<Folder>> add(@PathVariable("contents") String contents){
