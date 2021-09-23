@@ -9,7 +9,7 @@ const config = {
         login2:'./assets/js/login/login.tsx',
         habit:'./assets/js/habit/habit.tsx',
         regist:'./assets/js/login/regist.tsx',
-        map:'./assets/js/map/map.tsx',
+        maps:'./assets/js/map/maps.tsx',
     },
     resolve: {
         extensions: ['.jsx', '.js', '.json', '.ts','.tsx','.css','.scss']

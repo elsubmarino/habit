@@ -1,22 +1,25 @@
 import * as React from 'react';
 import * as ReactDOM from "react-dom";
+import GoogleMap from 'google-map-react';
 import GoogleMapReact from 'google-map-react';
 import {useState} from "react";
 import axios from "axios";
 import Regist from "../login/regist";
 
-const Map:React.FC = () => {
+const Maps:React.FC = () => {
     return(
-        <>
+        <div className={"map"}>
+            <GoogleMap >
 
-        </>
+            </GoogleMap>
+        </div>
     )
 }
 
 
-export default Map;
+export default Maps;
 
 const e = document.querySelector('div#container');
 if (e != null) {
-    ReactDOM.render(<Map/>, e);
+    ReactDOM.render(<Maps/>, e);
 }
