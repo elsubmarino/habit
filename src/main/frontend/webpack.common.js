@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production'
+const webpack = require("webpack");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const config = {
     entry: {
@@ -80,6 +83,9 @@ const config = {
             title: 'Spring Boot + React.js',
             description: `Spring Boot + React.js Example`,
             url: 'https://ohjongsung.io',
+        }),
+        new webpack.DefinePlugin({
+            "process.env":JSON.stringify(process.env),
         })
     ],
 };
