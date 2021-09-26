@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-
 public class PageMaker<T> {
     Pageable prevPage;
     Pageable nextPage;
