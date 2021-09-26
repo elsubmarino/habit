@@ -43,6 +43,21 @@ public class HabitController {
         return pageMaker;
     }
 
+    @PostMapping(value="list/{folder}/{number}")
+    public @ResponseBody
+    PageMaker listByFolder(HttpServletRequest request, @PathVariable(name = "number",required = false) int number,
+                           @PathVariable(name ="folder",required = true) long folderId) throws JsonProcessingException {
+        Login login = (Login)request.getSession().getAttribute("login");
+        Habit habit = new Habit();
+        Folder folder = new Folder();
+        folder.setId(folderId);
+        habit.setFolder(folder);
+        habit.setLogin(login);
+        Page<Habit> list = habitService.getList(habit,number);
+        PageMaker pageMaker = new PageMaker(list);
+        return pageMaker;
+    }
+
     @PostMapping("create")
     public Habit create(@RequestBody Habit habit, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -52,9 +67,10 @@ public class HabitController {
     }
 
     @PostMapping("delete/{id}")
-    public ResponseEntity<HttpStatus> delete(@RequestBody Habit habit, HttpServletRequest request, @PathVariable("id") Long id){
+    public ResponseEntity<HttpStatus> delete(HttpServletRequest request, @PathVariable("id") Long id){
         HttpSession session = request.getSession();
         Login login = (Login)session.getAttribute("login");
+        Habit habit = new Habit();
         habit.setId(id);
         habitService.delete(habit);
         return new ResponseEntity<>(HttpStatus.OK);

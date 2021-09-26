@@ -29,6 +29,10 @@ public class Habit {
     @JoinColumn(name="loginId", referencedColumnName = "id")
     private Login login;
 
+    @ManyToOne
+    @JoinColumn(name="folderId", referencedColumnName = "id")
+    private Folder folder;
+
     private String description;
 
     private char completeYn;

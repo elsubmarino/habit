@@ -38,14 +38,15 @@ const Main: React.FC = () => {
 
         axios({
             url:`/habit/delete/${id}`,
-            method:'post'
+            method:'post',
+            data:`${id}`,
         }).then((res)=>{
             const list_ = [...list];
             setList(
                  list_.filter((d)=> d.id !== id )
             );
         }).catch((e)=>{
-            alert("에러가 발생했습니다.f");
+            alert("에러가 발생했습니다.");
         });
     }
 
@@ -80,8 +81,26 @@ const Main: React.FC = () => {
         })
     }
 
+    const getListByFolder = (folder,page) =>{
+        alert('folder');
+        page=(page==undefined?0:page);
+        axios({
+            url:`/habit/list/${folder}/${page}`,
+            method:'post'
+        }).then(res=>{
+            alert('asdfasdfdsf');
+            alert(JSON.stringify(res));
+            setPageList(res.data.pageList);
+            setList(res.data.result.content);
+            setPrevPage(res.data.prevPage);
+            setNextPage(res.data.nextPage);
+        }).catch(e=>{
+            alert("에러가 발생했습니다.");
+        })
+    }
+
     useEffect(()=>{
-        getList();
+        //getList();
     },[]);
 
 
@@ -89,7 +108,9 @@ const Main: React.FC = () => {
         <div>
             <div style={{width:"30%",float:'left'}}>
                 <div>
-                    <Folder/>
+                    <Folder
+                        getListByFolder={(folder,page)=>getListByFolder(folder,page)}
+                    />
                 </div>
             </div>
             <div style={{width:"70%",float:'right'}}>

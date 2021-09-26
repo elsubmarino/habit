@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import FolderList from "./folderList";
 import axios from "axios";
 
-const Folder : React.FC = () =>{
+const Folder : React.FC = (props) =>{
     const [folderList,setFolderList] = useState([]);
     const [value,setValue] = useState('');
 
@@ -77,8 +77,10 @@ const Folder : React.FC = () =>{
                 추가
             </button>
             <FolderList
+                getListByFolder={(folder,page)=>props.getListByFolder(folder,page)}
                 folderList={folderList}
                 remove={(id)=>remove(id)}
+                get
             />
         </>
     )

@@ -3,19 +3,19 @@ import * as ReactDOM from "react-dom";
 import GoogleMap from "google-map-react";
 const Maps: React.FC = () => {
 
-    const watchID = navigator.geolocation.watchPosition((position) => {
+    const watchId = navigator.geolocation.watchPosition((position) => {
+        console.log(JSON.stringify(position));
         // Create the object to update this.state.mapRegion through the onRegionChange function
         latitude:       position.coords.latitude
         longitude:      position.coords.longitude
     }, (error)=>console.log(error));
-    alert(watchID.latitude);
 
     return(
         <div style={{width:'500px',height:'500px'}}>
             <GoogleMap
                 bootstrapURLKeys = {{ key:process.env.REACT_APP_GOOGLE_API_KEY }}
                 defaultZoom={15}
-                defaultCenter={{ lat: watchID.latitude, lng: watchID.longitude }}
+                defaultCenter={{ lat: 33, lng: 100 }}
                 ></GoogleMap>
         </div>
     );

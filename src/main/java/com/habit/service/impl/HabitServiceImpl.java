@@ -23,9 +23,15 @@ public class HabitServiceImpl implements HabitService {
 
     @Override
     public Page<Habit> getList(Habit habit,int number) {
-        Specification<Habit> specLogin = HabitSpecification.equalLoginId(habit);
         Pageable pageable = PageRequest.of(number,10,Sort.Direction.DESC,"modificationDateTime");
-        Page<Habit> pageList = habitRepository.findAll(specLogin,pageable);
+        Page<Habit> pageList;
+        if(habit.getFolder() != null){
+            Specification<Habit> specFolderId = HabitSpecification.equalFolderId(habit);
+            pageList = habitRepository.findAll(specFolderId,pageable);
+        }else{
+            Specification<Habit> specLogin = HabitSpecification.equalLoginId(habit);
+            pageList = habitRepository.findAll(specLogin,pageable);
+        }
         return pageList;
     }
 

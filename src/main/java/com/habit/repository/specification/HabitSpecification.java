@@ -9,4 +9,10 @@ public class HabitSpecification {
             builder.equal(root.get("login"),habit.getLogin())
         );
     }
+
+    public static Specification<Habit> equalFolderId(Habit habit){
+        return (Specification<Habit>)((root, query, builder)->
+            builder.equal(root.get("folder").get("id"),(habit.getFolder().getId()))
+        );
+    }
 }
