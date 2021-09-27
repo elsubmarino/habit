@@ -33,16 +33,16 @@ class HabitApplicationTests {
 //        int p = 1;
 
         //16	16	2	2	"13579BDF01234567" // 0 1 2 3 4 5 6 7 8 9 A B C D E F 1 0 1 1 1 2 1 3 1 4 1 5 1 6 1  7/
-//        int n = 16;
-//        int t = 16;
-//        int m = 2;
-//        int p = 2;
-
-        //8	16	2	2	"13579BDF01234567" // 0 1 2 3 4 5 6 7 8 9 A B C D E F 1 0 1 1 1 2 1 3 1 4 1 5 1 6 1  7/
-        int n = 8;
-        int t = 16;
+        int n = 16;
+        int t = 32;
         int m = 2;
         int p = 2;
+
+        //8	16	2	2	"13579BDF01234567" // 0 1 2 3 4 5 6 7 8 9 A B C D E F 1 0 1 1 1 2 1 3 1 4 1 5 1 6 1  7/
+        //int n = 8;
+        //int t = 16;
+        //int m = 2;
+        //int p = 2;
 
         int num = 0;
         int count = 0;
@@ -64,9 +64,29 @@ class HabitApplicationTests {
     }
 
     private String[] getNumber(int jin,int num){
-        List<Integer> array = new ArrayList<>();
+        List<String> array = new ArrayList<>();
         while(num>=jin){
-            int mod = num%jin;
+            String mod = Integer.parseInt(num%jin);
+            switch(mod){
+                case "10":
+                    mod="A";
+                    break;
+                case "11":
+                    mod="B";
+                    break;
+                case "12":
+                    mod="C";
+                    break;
+                case "13":
+                    mod="D";
+                    break;
+                case "14":
+                    mod="E";
+                    break;
+                case "15":
+                    mod="F";
+                    break;
+            }
             array.add(mod);
             num = num/jin;
         }
@@ -96,7 +116,7 @@ class HabitApplicationTests {
             result = String.valueOf(num);
         }
         for(int i=array.size()-1;i>=0;i--){
-            result+=String.valueOf(array.get(i));
+            result+=array.get(i);
         }
         return result.split("");
     }
