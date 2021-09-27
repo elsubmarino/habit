@@ -82,14 +82,11 @@ const Main: React.FC = () => {
     }
 
     const getListByFolder = (folder,page) =>{
-        alert('folder');
         page=(page==undefined?0:page);
         axios({
             url:`/habit/list/${folder}/${page}`,
             method:'post'
         }).then(res=>{
-            alert('asdfasdfdsf');
-            alert(JSON.stringify(res));
             setPageList(res.data.pageList);
             setList(res.data.result.content);
             setPrevPage(res.data.prevPage);
