@@ -58,11 +58,16 @@ public class HabitController {
         return pageMaker;
     }
 
-    @PostMapping("create")
-    public Habit create(@RequestBody Habit habit, HttpServletRequest request){
+    @PostMapping("create/{folderId}")
+    public Habit create(@RequestBody Habit habit,
+                        @PathVariable("folderId") Long folderId,
+                        HttpServletRequest request){
         HttpSession session = request.getSession();
         Login login = (Login)session.getAttribute("login");
         habit.setLogin(login);
+        Folder folder = new Folder();
+        folder.setId(folderId);
+        habit.setFolder(folder);
         return habitService.create(habit);
     }
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 
 const FolderList : React.FC = (props) =>{
 
-
     return(
         <>
             {props.folderList.length > 0  ?

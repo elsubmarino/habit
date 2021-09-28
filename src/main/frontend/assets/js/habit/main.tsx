@@ -15,11 +15,11 @@ const Main: React.FC = () => {
     const [pageList, setPageList] = useState([]);
     const [prevPage,setPrevPage] = useState('');
     const [nextPage,setNextPage] = useState('');
+    const [currentFolderId,setCurrentFolderId] = useState('');
 
-    const add = () =>
-    {
+    const add = () => {
         axios({
-            url:'/habit/create',
+            url:`/habit/create/${currentFolderId}`,
             data:{description:schedule},
             method:'post'
         }).then((response)=>{
@@ -91,6 +91,7 @@ const Main: React.FC = () => {
             setList(res.data.result.content);
             setPrevPage(res.data.prevPage);
             setNextPage(res.data.nextPage);
+            setCurrentFolderId(folder);
         }).catch(e=>{
             alert("에러가 발생했습니다.");
         })
@@ -113,7 +114,7 @@ const Main: React.FC = () => {
             <div style={{width:"70%",float:'right'}}>
                 <div>
                     <input type={'text'} name={'schedule'} onChange={(e)=>setSchedule(e.target.value)}/>
-                    <input type={'button'} onClick={(e) => add()}/>
+                    <input type={'button'} onClick={() => add()}/>
                     <div>
                         <MainSubList
                             list={list}

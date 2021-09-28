@@ -80,7 +80,6 @@ const Folder : React.FC = (props) =>{
                 getListByFolder={(folder,page)=>props.getListByFolder(folder,page)}
                 folderList={folderList}
                 remove={(id)=>remove(id)}
-                get
             />
         </>
     )
