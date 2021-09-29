@@ -38,6 +38,7 @@ const Folder : React.FC = (props) =>{
             let list = [...folderList];
             list.push(response.data);
             setFolderList(list);
+            props.getList(0);
         }).catch((e)=>{
             alert("에러가 발생했습니다.");
         });
@@ -59,7 +60,7 @@ const Folder : React.FC = (props) =>{
             let list = [...folderList];
             setFolderList(
                 list.filter((d)=> d.id !== id )
-            );
+            );``
         }).catch((e)=>{
             alert("에러가 발생했습니다.");
         });

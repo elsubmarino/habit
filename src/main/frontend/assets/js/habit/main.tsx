@@ -6,6 +6,7 @@ import HabitList from "./habitList";
 import Folder from "./folder";
 import axios from "axios";
 import Paging from "./paging";
+import Label from "./label";
 
 
 const Main: React.FC = () => {
@@ -108,7 +109,11 @@ const Main: React.FC = () => {
                 <div>
                     <Folder
                         getListByFolder={(folder,page)=>getListByFolder(folder,page)}
+                        getList={(page)=>getList(page)}
                     />
+                </div>
+                <div>
+                    <Label/>
                 </div>
             </div>
             <div style={{width:"70%",float:'right'}}>
