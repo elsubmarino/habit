@@ -1,33 +1,29 @@
 package com.habit.domain;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@Entity
 public class Label {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
+    @JsonFormat
     private LocalDateTime registrationDateTime;
 
     @Column(nullable = false)
+    @JsonFormat
     private LocalDateTime modificationDateTime;
 
-    private char deleteYn;
-
-    @OneToMany(mappedBy = "habit")
-    List<Habit> habitList = new ArrayList<>();
-
+    @ManyToOne
+    @JoinColumn(name = "loginId",referencedColumnName = "id")
+    private Habit habit;
 }
-
-

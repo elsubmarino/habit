@@ -3,17 +3,14 @@ package com.habit;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
+import java.util;
 class HabitApplicationTests {
     @Test
     public void test() {
 
-        System.out.println(inner());
+        inner();
     }
 
     public Boolean inner() {
@@ -24,47 +21,9 @@ class HabitApplicationTests {
         //String s =")()(";
 
         //"(())()" true
-        //String s ="(())()";
-
-        //"((()()))" true
-        //String s = "((()()))";
-
-        String s = "())";
-        Pattern pattern = Pattern.compile("\\(");
-        Pattern pattern2 = Pattern.compile("\\)");
-        Matcher matcher = pattern.matcher(s);
-        if(matcher.matches()){
-            System.out.println(matcher.groupCount());
-        }
-        if(matcher.find()){
-            System.out.println(matcher.groupCount());
-        }
-
+        String s ="(())()";
         String[]split = s.split("");
-        int open = 0;
-        int close = 0;
-        Stack<String> stackList = new Stack<>();
-        if(split[0].equals(")"))
-            return false;
-        for(int i=0; i <split.length;i++){
-            if(split[i].equals("(")){
-                //open++;
-                stackList.push("opened");
-            }else if(split[i].equals(")")) {
-                //close++;
-                if(stackList.size()>=1)
-                    stackList.pop();
-                else
-                    return false;
-            }
-        }
-//        if(open == close){
-//            return true;
-//        }else{
-//            return false;
-//        }
-        if(stackList.size()==0) return true;
-        return false;
+        Stack<String>
 
         //"(())()"	true
         //")()("	false
