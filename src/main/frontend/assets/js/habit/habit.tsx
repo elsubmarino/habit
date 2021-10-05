@@ -17,10 +17,6 @@ const Habit: React.FC = () => {
         setList(list_);
     }
 
-
-
-
-
     return (
         <div>
             <input type={'text'} name={'schedule'} onChange={(e)=>setSchedule(e.target.value)}/>

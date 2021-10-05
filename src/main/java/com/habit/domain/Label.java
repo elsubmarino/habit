@@ -16,6 +16,9 @@ public class Label {
     private Long id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     @JsonFormat
     private LocalDateTime registrationDateTime;
 
