@@ -3,6 +3,7 @@ package com.habit;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 class HabitApplicationTests {
@@ -14,6 +15,8 @@ class HabitApplicationTests {
 
     public Boolean inner() {
         String s = "())(";
+        byte[]f = s.getBytes();
+        f[0];
         if (s.length() % 2 != 0) return false;
         int countLeft = s.replaceAll("\\)", "").length();
         int countRight = s.replaceAll("\\(", "").length();

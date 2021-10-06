@@ -6,7 +6,7 @@ const LabelList : React.FC = (props)=>{
             {
                 props.list.length != 0 ?
                   props.list.map(d=>{
-                      <div>d.label</div>
+                      <div>d.name</div>
                   })
                     : null
             }

@@ -26,7 +26,7 @@ const Label : React.FC =() =>{
 
     return(
         <div>
-            <span>Label</span><span>+</span>
+            <span>Label</span><span onClick={()=>listAll()}>+</span>
             <LabelList
                 list={labelList}
             />
