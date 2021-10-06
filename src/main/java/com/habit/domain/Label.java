@@ -28,5 +28,5 @@ public class Label {
 
     @ManyToOne
     @JoinColumn(name = "loginId",referencedColumnName = "id")
-    private Habit habit;
+    private Login login;
 }

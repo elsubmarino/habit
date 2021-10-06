@@ -23,9 +23,7 @@ public class LabelController {
     @RequestMapping("add")
     public @ResponseBody Label add(HttpServletRequest request, @RequestBody Label label){
         Login login = (Login)request.getSession().getAttribute("login");
-        Habit habit = new Habit();
-        habit.setLogin(login);
-        label.setHabit(habit);
+        label.setLogin(login);
         return labelService.add(label);
     }
 
@@ -33,11 +31,9 @@ public class LabelController {
     public @ResponseBody
     List<Label> listAll(HttpServletRequest request){
         Login login = (Login)request.getSession().getAttribute("login");
-        Habit habit = new Habit();
-        habit.setLogin(login);
         Label label = new Label();
-        label.setHabit(habit);
-        return labelService.listAll(habit);
+        label.setLogin(login);
+        return labelService.listAll(label);
     }
 
 }
