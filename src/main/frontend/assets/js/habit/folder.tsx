@@ -7,6 +7,10 @@ const Folder : React.FC = (props) =>{
     const [folderList,setFolderList] = useState([]);
     const [value,setValue] = useState('');
 
+    //useEffect(() => {
+    //   return () => setLoading(false);
+    // }, []);
+
 
     const add = () =>{
         addToDb(value);
@@ -67,7 +71,11 @@ const Folder : React.FC = (props) =>{
     }
 
     useEffect(()=>{
-        getList();
+        getList()
+    },[]);
+
+    useEffect(()=>{
+        return()=> {setFolderList([]); setValue('');}
     },[]);
 
 

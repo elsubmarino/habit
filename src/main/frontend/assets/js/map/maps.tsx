@@ -4,7 +4,6 @@ import GoogleMap from "google-map-react";
 const Maps: React.FC = () => {
 
     const watchId = navigator.geolocation.watchPosition((position) => {
-        console.log(JSON.stringify(position));
         // Create the object to update this.state.mapRegion through the onRegionChange function
         latitude:       position.coords.latitude
         longitude:      position.coords.longitude

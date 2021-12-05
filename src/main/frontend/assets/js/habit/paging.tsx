@@ -17,8 +17,8 @@ const Paging : React.FC = (props) => {
             }
             {
                 props.pageList.length > 0 ?
-                props.pageList.map(d=>{
-                    return <li><a href={'#'} onClick={()=>props.getList(d.pageNumber)}>{d.pageNumber+1}</a></li>
+                props.pageList.map((d,index)=>{
+                    return <li key={`paging-key-${index}`}><a href={'#'} onClick={()=>props.getList(d.pageNumber)}>{d.pageNumber+1}</a></li>
                 })
                     :null
             }

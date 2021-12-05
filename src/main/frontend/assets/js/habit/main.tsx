@@ -10,7 +10,6 @@ import Label from "./label";
 
 
 const Main: React.FC = () => {
-    //CherryPickRemoved
     const [schedule, setSchedule] = useState('');
     const [list, setList] = useState([]);
     const [pageList, setPageList] = useState([]);
@@ -22,7 +21,7 @@ const Main: React.FC = () => {
         axios({
             url:`/habit/create/${currentFolderId}`,
             data:{description:schedule},
-            method:'post'
+        method:'post'
         }).then((response)=>{
             let list_ = [...list];
             list_.push(response.data);
@@ -82,7 +81,7 @@ const Main: React.FC = () => {
         })
     }
 
-    const getListByFolder = (folder,page) =>{
+    const getListByFolder = (folder: any,page: any) =>{
         page=(page==undefined?0:page);
         axios({
             url:`/habit/list/${folder}/${page}`,
@@ -108,7 +107,7 @@ const Main: React.FC = () => {
             <div style={{width:"30%",float:'left'}}>
                 <div>
                     <Folder
-                        getListByFolder={(folder,page)=>getListByFolder(folder,page)}
+                        getListByFolder={(folder: any,page: any)=>getListByFolder(folder,page)}
                         getList={(page)=>getList(page)}
                     />
                 </div>

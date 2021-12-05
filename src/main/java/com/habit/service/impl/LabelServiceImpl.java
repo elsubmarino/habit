@@ -1,5 +1,6 @@
 package com.habit.service.impl;
 
+import com.habit.domain.Habit;
 import com.habit.domain.Label;
 import com.habit.domain.Login;
 import com.habit.repository.LabelRepository;
@@ -22,8 +23,8 @@ public class LabelServiceImpl implements LabelService {
     }
 
     @Override
-    public List<Label> listAll(Login login) {
-        Specification<Label> specLoginId = LabelSpecification.equalLoginId(login);
+    public List<Label> listAll(Habit habit) {
+        Specification<Label> specLoginId = LabelSpecification.equalLoginId(habit);
         return labelRepository.findAll(specLoginId);
     }
 }

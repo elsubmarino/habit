@@ -16,13 +16,13 @@ const MainSubList: React.FC = (props) => {
             {
                 props.list.length > 0 ?
                     props.list.map((d, index) =>
-                        <>
+                        <div key={`key-${index}`}>
                             <input type={'text'} key={`rs-${index}`} id={d.id} contentEditable={true} onChange={(e)=>change(d.id,e.target.value)}
                             value={d.description}/>
-                            <button key={index} onClick={()=>props.modify(d.id)}>수정</button>
-                            <button key={index} onClick={()=>props.remove(d.id)}>삭제</button>
+                            <button onClick={()=>props.modify(d.id)}>수정</button>
+                            <button onClick={()=>props.remove(d.id)}>삭제</button>
                             <br/>
-                        </>
+                        </div>
                     )
 
                     : null

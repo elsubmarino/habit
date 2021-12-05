@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -23,93 +24,48 @@ public class querydslTest {
 
     @Test
     public void querydsl_기본_테스트() {
-        String patternString="((([0-9]*D)|([0-9]*S)|([0-9]*T)){1,2}[*?])|((([0-9]*D)|([0-9]*S)|([0-9]*T)){1}[#?])";
-        String dartResult="1S*2D*3T*";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(dartResult);
-        int sum = 0;
-        int count = 0;
-        StringBuffer sb = new StringBuffer();
-        ArrayList<String> str = new ArrayList<>();
-        while(matcher.find()){
-            sb.append(matcher.group(0));
-            String result = matcher.group(0);
-            String patternSubString = "[0-9]*[S|D|T][*|#]?";
-            Pattern patternSub = Pattern.compile(patternSubString);
-            Matcher matcherSub = patternSub.matcher(result);
-            while(matcherSub.find()){
-                str.add(matcherSub.group(0));
-            }
-        }
-        Collections.reverse(str);
-        Iterator itr = str.iterator();
-        int countOfAsterik = 0;
-        while(itr.hasNext()){
-            String result = (String)itr.next();
-            String patternSubString = "[0-9]*[S|D|T]";
-            Pattern patternSub = Pattern.compile(patternSubString);
-            Matcher matcherSub = patternSub.matcher(result);
-            int currentSum = 0;
-            int naturalScore = 0;
-            while(matcherSub.find()){
-                String resultSub = matcherSub.group(0);
-                naturalScore = Integer.parseInt(resultSub.substring(0,resultSub.length()-1));
-                switch(resultSub.substring(resultSub.length()-1,resultSub.length())){
-                    case "S":
-                        currentSum += naturalScore;
-                        break;
-                    case "D":
-                        currentSum += naturalScore * naturalScore;
-                        break;
-                    case "T":
-                        currentSum += naturalScore * naturalScore * naturalScore;
-                        break;
-                }
-            }
-            if(result.lastIndexOf("#") == -1){
-                if(result.lastIndexOf("*") != -1){
-                    count++;
-                }
-                int temp = currentSum * 2;
-                if(count > 1) {
-                    temp *= 2;
-                    count=0;
-                }
-                sum += temp;
+        int answer = 0;
+        int[][] sizes = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
 
-           }else if(result.lastIndexOf("#") != -1){
-                if(count>0) {
-                    sum += currentSum * -2;
-                    count=0;
-                }else{
-                    sum += currentSum * -1;
+        for(int i=-1;i<sizes.length;i++){
+            int[][] sizes_ = new int[sizes.length][sizes[0].length];
+            if(i == -1){
+                sizes_ = sizes;
+            }else{
+                sizes_ = change(sizes,i);
+            }
+
+            int maxLeft = 0;
+            int maxRight = 0;
+            for(int j=0;j<sizes_.length;j++){
+                System.out.println(sizes_[j][0]+": 0");
+                System.out.println(sizes_[j][1]+": 1");
+                if(maxLeft < sizes_[j][0]){
+                    maxLeft = sizes_[j][0];
                 }
+                if(maxRight < sizes_[j][1]){
+                    maxRight = sizes_[j][1];
+                }
+            }
+            int tempAnswer = maxLeft * maxRight;
+            if(i == -1){
+                answer = tempAnswer;
+            }else{
+                if(answer > tempAnswer)
+                    answer=tempAnswer;
             }
         }
 
-        if(sb.length() != 0){
-            dartResult = dartResult.replace(sb.toString(),"");
-        }
+        System.out.println(answer);
+    }
 
-        patternString = "[0-9]*[S|D|T]";
-        pattern = Pattern.compile(patternString);
-        matcher = pattern.matcher(dartResult);
-        while(matcher.find()){
-            String resultSub = matcher.group(0);
-            int naturalScore = Integer.parseInt(resultSub.substring(0,resultSub.length()-1));
-            switch(resultSub.substring(resultSub.length()-1,resultSub.length())){
-                case "S":
-                    sum += naturalScore;
-                    break;
-                case "D":
-                    sum += naturalScore * naturalScore;
-                    break;
-                case "T":
-                    sum += naturalScore * naturalScore * naturalScore;
-                    break;
-            }
-        }
-        System.out.println(sum);
+    public int[][] change(int[][]sizes,int num){
+        int temp1 = sizes[num][0] ;
+        int temp2 = sizes[num][1];
+
+        sizes[num][0]=temp2;
+        sizes[num][1]=temp1;
+        return sizes;
     }
 
 }

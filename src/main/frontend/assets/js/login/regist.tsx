@@ -39,7 +39,7 @@ const Regist: React.FC = () =>{
                 </tr>
              </tbody>
          </table>
-            <input type={"text"} name={"submit"} id={"submit"} onClick={()=>submit()} value={"가입"}/>
+            {/*<input type={"text"} name={"submit"} id={"submit"} onClick={()=>submit()} value={"가입"}/>*/}
         </>
     )
 }

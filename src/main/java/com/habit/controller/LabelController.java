@@ -33,7 +33,9 @@ public class LabelController {
         Login login = (Login)request.getSession().getAttribute("login");
         Label label = new Label();
         label.setLogin(login);
-        return labelService.listAll(label);
+        Habit habit = new Habit();
+        habit.setLogin(login);
+        return labelService.listAll(habit);
     }
 
 }
