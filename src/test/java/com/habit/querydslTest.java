@@ -11,61 +11,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
 public class querydslTest {
 
     @Test
     public void querydsl_기본_테스트() {
-        int answer = 0;
-        int[][] sizes = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
-
-        for(int i=-1;i<sizes.length;i++){
-            int[][] sizes_ = new int[sizes.length][sizes[0].length];
-            if(i == -1){
-                sizes_ = sizes;
-            }else{
-                sizes_ = change(sizes,i);
-            }
-
-            int maxLeft = 0;
-            int maxRight = 0;
-            for(int j=0;j<sizes_.length;j++){
-                System.out.println(sizes_[j][0]+": 0");
-                System.out.println(sizes_[j][1]+": 1");
-                if(maxLeft < sizes_[j][0]){
-                    maxLeft = sizes_[j][0];
+        String test = "ababcdcdababcdcd";
+        int mediumNumber=test.length()/2;
+        int maxLength = test.length();
+        int leastNum=1;
+        int startNum = 0;
+        String mixed = "";
+        for(int i=2;i<=mediumNumber;i++){
+            String beforeTemp=null;
+            int repeatNumber = 1;
+            boolean repeatedBoolean = false;
+            for(int j=0;j<maxLength;j+=i){
+                if(beforeTemp==null) {
+                    beforeTemp = test.substring(j,i+j);
+                    continue;
                 }
-                if(maxRight < sizes_[j][1]){
-                    maxRight = sizes_[j][1];
+                String temp = test.substring(j,i+j);
+                if(temp.equals(beforeTemp)){
+                    repeatedBoolean=true;
+                    beforeTemp = temp;
+                    repeatNumber++;
+                }else{
+                    if(repeatedBoolean){
+                        mixed+=repeatNumber+beforeTemp;
+                        mixed+=temp;
+                    }else{
+                        mixed+=temp;
+                    }
+                    repeatedBoolean=false;
+                    repeatNumber=1;
                 }
-            }
-            int tempAnswer = maxLeft * maxRight;
-            if(i == -1){
-                answer = tempAnswer;
-            }else{
-                if(answer > tempAnswer)
-                    answer=tempAnswer;
+
+
+
+
             }
         }
+        System.out.println(mixed);
+        System.out.println("zcvcxvvcxv");
 
-        System.out.println(answer);
-    }
 
-    public int[][] change(int[][]sizes,int num){
-        int temp1 = sizes[num][0] ;
-        int temp2 = sizes[num][1];
-
-        sizes[num][0]=temp2;
-        sizes[num][1]=temp1;
-        return sizes;
     }
 
 }
