@@ -77,6 +77,7 @@ public class querydslTest {
         System.out.println("zcvcxvvcxvff");
         System.out.println("하하호호아줌마");
         System.out.println("우리꼬꼬 아줌마");
+        System.out.println("develop에서 자격이 있었음");
 
     }
 
