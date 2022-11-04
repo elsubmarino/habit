@@ -58,7 +58,7 @@ public class querydslTest {
             }
         }
         System.out.println(mixed);
-        System.out.println("zcvcxvvcxv");
+        System.out.println("zcvcxvvcxvff");
 
 
     }
