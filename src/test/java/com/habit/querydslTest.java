@@ -19,6 +19,7 @@ public class querydslTest {
 
     @Test
     public void querydsl_기본_테스트() {
+        System.out.println("zzz");
         System.out.println("develop");
         String test = "ababcdcdababcdcd";
         int mediumNumber=test.length()/2;
