@@ -5,4 +5,5 @@ public class Test {
     System.out.println("kakaka");
     System.out.println("kamikaze");
     System.out.println("fuck");
+    System.out.println("fuck2");
 }
