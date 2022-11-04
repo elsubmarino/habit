@@ -74,7 +74,7 @@ public class querydslTest {
         }else {
             cnt = stringArray.stream().min(Comparator.comparing(d -> d.length())).orElseThrow(NotOwnerException::new).length();
         }
-        System.out.println("zcvcxvvcxv");
+        System.out.println("zcvcxvvcxvff");
 
 
     }
